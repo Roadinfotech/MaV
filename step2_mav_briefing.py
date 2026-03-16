@@ -1,7 +1,7 @@
 """
-Step 2 통합 버전 (v5.2): MaV 하이엔드 경제 브리핑 생성기 (Data Quality & JSON Robustness)
+Step 2 통합 버전 (v5.3): MaV 하이엔드 경제 브리핑 생성기 (Syntax Fix & Robust JSON)
 - News Quality: RSS 피드를 '전체'에서 '증권/금융/매크로' 전용 카테고리로 엄격히 제한
-- AI Robustness: Groq LLM의 Markdown(`json`) 오염 출력 시 강제 파싱 및 에러 로깅 추가
+- AI Robustness: Groq LLM의 Markdown 오염 출력 시 안전한 파싱 (replace 방식)
 """
 
 import os
@@ -173,14 +173,45 @@ Output ONLY valid JSON matching this structure:
             response_format={"type": "json_object"}
         )
         
-        # [Robustness Fix] Markdown 백틱 강제 제거 로직 추가
+        # [Robustness Fix] Markdown 백틱 강제 제거 로직 안전하게 변경
         raw_content = response.choices[0].message.content.strip()
-        if raw_content.startswith("
-http://googleusercontent.com/immersive_entry_chip/0
-http://googleusercontent.com/immersive_entry_chip/1
-http://googleusercontent.com/immersive_entry_chip/2
+        raw_content = raw_content.replace("```json", "").replace("```", "").strip()
+        
+        result = json.loads(raw_content)
+        print("  ✅ AI 프리미엄 분석 완료")
+        return result
+    except Exception as e:
+        print(f"  ❌ AI 분석 실패 (JSON 파싱 에러): {e}")
+        if 'raw_content' in locals():
+            print(f"  ⚠️ LLM 원본 출력값: {raw_content}")
+        return {}
 
-### ⏭ 다음 단계 (Action)
-1. 로컬에서 수정한 `step2_mav_briefing.py`를 덮어쓴 후, `git add .`, `git commit -m "fix: ai json parsing and news quality"`, `git push` 로 GitHub에 업데이트하라.
-2. Actions 탭에서 수동 실행하여 빈칸이 채워지는지 즉각 확인하라.
-3. 데이터 확장은 현재 구축된 파이프라인이 100% 무결하게 돌아가는 것을 확인한 즉시, 미국 채권 수익률 곡선(2Y/10Y) 역전 데이터와 크립토 Fear/Greed 지표를 추가하는 **콘텐츠 딥다이브** 단계로 넘어가겠다. 실행 결과 피드백을 기다린다.
+def main():
+    today_str = datetime.now().strftime("%Y%m%d")
+    print(f"🚀 MaV 하이엔드 브리핑 파이프라인 가동 ({today_str})")
+    
+    market = collect_market_data()
+    fg = collect_fear_and_greed()
+    fred = collect_fred_data()
+    ecos = collect_ecos_data()
+    news = collect_news()
+    
+    ai = generate_ai_insight(market, fg, news, fred, ecos)
+    
+    output_data = {
+        "date": datetime.now().strftime("%Y년 %m월 %d일"), 
+        "weekday": ["월", "화", "수", "목", "금", "토", "일"][datetime.now().weekday()], 
+        "market_data": market, 
+        "fear_and_greed": fg, 
+        "fred_data": fred, 
+        "ecos_data": ecos, 
+        "news": news, 
+        "ai_insight": ai
+    }
+    
+    filename = f"mav_briefing_{today_str}.json"
+    with open(filename, "w", encoding="utf-8") as f: json.dump(output_data, f, ensure_ascii=False, indent=2)
+    print(f"\n✅ JSON 저장 완료: {filename}")
+
+if __name__ == "__main__":
+    main()
