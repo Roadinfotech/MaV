@@ -1,6 +1,7 @@
 """
-Step 2 통합 버전 (v5.0): MaV 하이엔드 경제 브리핑 생성기 (CI/CD Security Ready)
-- Security: API Key 하드코딩 제거 및 환경 변수(os.environ) 주입 방식으로 전환
+Step 2 통합 버전 (v5.2): MaV 하이엔드 경제 브리핑 생성기 (Data Quality & JSON Robustness)
+- News Quality: RSS 피드를 '전체'에서 '증권/금융/매크로' 전용 카테고리로 엄격히 제한
+- AI Robustness: Groq LLM의 Markdown(`json`) 오염 출력 시 강제 파싱 및 에러 로깅 추가
 """
 
 import os
@@ -28,11 +29,13 @@ MARKET_TICKERS = {
 FRED_SERIES = {"미국 기준금리": "FEDFUNDS", "미국 CPI": "CPIAUCSL", "미국 실업률(%)": "UNRATE"}
 ECOS_SERIES = {"한국 기준금리": {"stat_code": "722Y001", "item_code": "0101000"}}
 
+# [Quality Fix] 뉴스 피드를 '금융/증권'으로 엄격히 제한
 RSS_FEEDS = {
     "WSJ Markets": "https://feeds.a.dj.com/rss/RSSMarketsMain.xml",
-    "CNBC Top News": "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100003114",
+    "CNBC Finance": "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10000664",
     "Yahoo Finance": "https://finance.yahoo.com/news/rssindex",
-    "한국경제": "https://www.hankyung.com/feed/all-news",
+    "한국경제(증권)": "https://www.hankyung.com/feed/stock",
+    "매일경제(금융)": "https://www.mk.co.kr/rss/30000016/"
 }
 
 def collect_market_data():
@@ -139,7 +142,7 @@ def generate_ai_insight(market_data, fg_data, news, fred_data, ecos_data):
 
 Output ONLY valid JSON matching this structure:
 {{
-  "narrative": "(Write 3 sentences analyzing today's market drivers, focusing on yields, FX, and equities. Do NOT include phrases like '시황 핵심 요약' or '서술하세요')",
+  "narrative": "(Write 3 sentences analyzing today's market drivers, focusing on yields, FX, and equities.)",
   "so_what": {{
     "미국_시장": "(1 sentence on US equities and sectors)",
     "한국_시장": "(1 sentence on KR equities and sectors)",
@@ -163,40 +166,21 @@ Output ONLY valid JSON matching this structure:
     try:
         from groq import Groq
         client = Groq(api_key=GROQ_API_KEY)
-        response = client.chat.completions.create(model="llama-3.3-70b-versatile", messages=[{"role": "user", "content": prompt}], temperature=0.1, response_format={"type": "json_object"})
-        result = json.loads(response.choices[0].message.content)
-        print("  ✅ AI 프리미엄 분석 완료")
-        return result
-    except Exception as e:
-        print(f"  ❌ AI 분석 실패: {e}")
-        return {}
+        response = client.chat.completions.create(
+            model="llama-3.3-70b-versatile", 
+            messages=[{"role": "user", "content": prompt}], 
+            temperature=0.1, 
+            response_format={"type": "json_object"}
+        )
+        
+        # [Robustness Fix] Markdown 백틱 강제 제거 로직 추가
+        raw_content = response.choices[0].message.content.strip()
+        if raw_content.startswith("
+http://googleusercontent.com/immersive_entry_chip/0
+http://googleusercontent.com/immersive_entry_chip/1
+http://googleusercontent.com/immersive_entry_chip/2
 
-def main():
-    today_str = datetime.now().strftime("%Y%m%d")
-    print(f"🚀 MaV 하이엔드 브리핑 파이프라인 가동 ({today_str})")
-    
-    market = collect_market_data()
-    fg = collect_fear_and_greed()
-    fred = collect_fred_data()
-    ecos = collect_ecos_data()
-    news = collect_news()
-    
-    ai = generate_ai_insight(market, fg, news, fred, ecos)
-    
-    output_data = {
-        "date": datetime.now().strftime("%Y년 %m월 %d일"), 
-        "weekday": ["월", "화", "수", "목", "금", "토", "일"][datetime.now().weekday()], 
-        "market_data": market, 
-        "fear_and_greed": fg, 
-        "fred_data": fred, 
-        "ecos_data": ecos, 
-        "news": news, 
-        "ai_insight": ai
-    }
-    
-    filename = f"mav_briefing_{today_str}.json"
-    with open(filename, "w", encoding="utf-8") as f: json.dump(output_data, f, ensure_ascii=False, indent=2)
-    print(f"\n✅ JSON 저장 완료: {filename}")
-
-if __name__ == "__main__":
-    main()
+### ⏭ 다음 단계 (Action)
+1. 로컬에서 수정한 `step2_mav_briefing.py`를 덮어쓴 후, `git add .`, `git commit -m "fix: ai json parsing and news quality"`, `git push` 로 GitHub에 업데이트하라.
+2. Actions 탭에서 수동 실행하여 빈칸이 채워지는지 즉각 확인하라.
+3. 데이터 확장은 현재 구축된 파이프라인이 100% 무결하게 돌아가는 것을 확인한 즉시, 미국 채권 수익률 곡선(2Y/10Y) 역전 데이터와 크립토 Fear/Greed 지표를 추가하는 **콘텐츠 딥다이브** 단계로 넘어가겠다. 실행 결과 피드백을 기다린다.
