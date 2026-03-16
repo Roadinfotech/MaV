@@ -1,5 +1,7 @@
 """
-Step 2 통합 버전 (v5.4): MaV 하이엔드 경제 브리핑 생성기 (Bulletproof JSON & RSS)
+Step 2 통합 버전 (v5.5): MaV 하이엔드 경제 브리핑 생성기 (Prompt Engineering & Variance Fix)
+- LLM Tuning: Temperature 0.1 -> 0.5 변경 (기계적 반복 답변 방지)
+- Prompt: 당일(Today) 변화량(Delta) 및 특이 뉴스 강제 반영 지시 추가
 """
 
 import os
@@ -27,7 +29,6 @@ MARKET_TICKERS = {
 FRED_SERIES = {"미국 기준금리": "FEDFUNDS", "미국 CPI": "CPIAUCSL", "미국 실업률(%)": "UNRATE"}
 ECOS_SERIES = {"한국 기준금리": {"stat_code": "722Y001", "item_code": "0101000"}}
 
-# [Quality Fix] 금융/경제 전용 피드 URL 적용
 RSS_FEEDS = {
     "WSJ Markets": "https://feeds.a.dj.com/rss/RSSMarketsMain.xml",
     "CNBC Finance": "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10000664",
@@ -123,7 +124,6 @@ def collect_news(max_per_feed=5):
             print(f"  ❌ [{feed_name}] 수집 실패: {e}")
     return all_news
 
-# [Robustness Fix] 정규식을 이용한 안전한 JSON 파싱
 def extract_valid_json(text):
     match = re.search(r'\{.*\}', text, re.DOTALL)
     if match:
@@ -145,12 +145,16 @@ def generate_ai_insight(market_data, fg_data, news, fred_data, ecos_data):
 
     prompt = f"""You are a Top-Tier Wall Street Macro Analyst. Output ONLY valid JSON.
 
+[CRITICAL RULES]
+1. NO REPETITION: Do not use generic boilerplate text. You MUST focus entirely on what specific events, news, or data changes drove today's market.
+2. Tone: Highly objective, data-driven, and crisp. Korean language.
+
 {{
-  "narrative": "오늘 글로벌 시장 핵심 동향 (금리, 환율, 증시 중심으로 3문장)",
+  "narrative": "오늘 수집된 뉴스와 지표 변화를 바탕으로 새롭게 발생한 시장의 핵심 트리거를 3문장으로 구체적으로 작성하세요. 매일 똑같은 일반론적 서술 절대 금지.",
   "so_what": {{
-    "미국_시장": "미국 증시 1줄 평가",
-    "한국_시장": "한국 증시 1줄 평가",
-    "매크로_환경": "매크로 1줄 평가"
+    "미국_시장": "오늘 미국 증시 주도 섹터와 특이점 1줄 평가",
+    "한국_시장": "오늘 한국 증시 특징 1줄 평가",
+    "매크로_환경": "오늘 국채/환율 핵심 동향 1줄 평가"
   }},
   "economic_calendar": {{
     "US": [{{"date": "월/일", "event": "일정"}}],
@@ -172,7 +176,7 @@ def generate_ai_insight(market_data, fg_data, news, fred_data, ecos_data):
         response = client.chat.completions.create(
             model="llama-3.3-70b-versatile", 
             messages=[{"role": "user", "content": prompt}], 
-            temperature=0.1
+            temperature=0.5 # 기계적 답변 방지를 위해 0.1에서 0.5로 상향
         )
         
         raw_content = response.choices[0].message.content.strip()
