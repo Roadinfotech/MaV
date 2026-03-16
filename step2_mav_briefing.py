@@ -1,17 +1,15 @@
 """
-Step 2 통합 버전 (v5.3): MaV 하이엔드 경제 브리핑 생성기 (Syntax Fix & Robust JSON)
-- News Quality: RSS 피드를 '전체'에서 '증권/금융/매크로' 전용 카테고리로 엄격히 제한
-- AI Robustness: Groq LLM의 Markdown 오염 출력 시 안전한 파싱 (replace 방식)
+Step 2 통합 버전 (v5.4): MaV 하이엔드 경제 브리핑 생성기 (Bulletproof JSON & RSS)
 """
 
 import os
+import re
+import json
 import yfinance as yf
 import feedparser
 import requests
-import json
 from datetime import datetime, timedelta
 
-# [Security] 환경 변수에서 API Key 로드
 FRED_API_KEY = os.environ.get("FRED_API_KEY", "")
 ECOS_API_KEY = os.environ.get("ECOS_API_KEY", "")
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "")
@@ -29,13 +27,12 @@ MARKET_TICKERS = {
 FRED_SERIES = {"미국 기준금리": "FEDFUNDS", "미국 CPI": "CPIAUCSL", "미국 실업률(%)": "UNRATE"}
 ECOS_SERIES = {"한국 기준금리": {"stat_code": "722Y001", "item_code": "0101000"}}
 
-# [Quality Fix] 뉴스 피드를 '금융/증권'으로 엄격히 제한
+# [Quality Fix] 금융/경제 전용 피드 URL 적용
 RSS_FEEDS = {
     "WSJ Markets": "https://feeds.a.dj.com/rss/RSSMarketsMain.xml",
     "CNBC Finance": "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=10000664",
-    "Yahoo Finance": "https://finance.yahoo.com/news/rssindex",
-    "한국경제(증권)": "https://www.hankyung.com/feed/stock",
-    "매일경제(금융)": "https://www.mk.co.kr/rss/30000016/"
+    "한국경제(금융)": "https://www.hankyung.com/feed/finance",
+    "매일경제(경제)": "https://www.mk.co.kr/rss/30000001/"
 }
 
 def collect_market_data():
@@ -76,7 +73,7 @@ def collect_fear_and_greed():
 
 def collect_fred_data():
     print("\n🏛️  미국 거시경제 지표 수집 중...")
-    if not FRED_API_KEY: return print("  ⚠️ FRED_API_KEY 누락됨") or {}
+    if not FRED_API_KEY: return {}
     results = {}
     try:
         from fredapi import Fred
@@ -94,7 +91,7 @@ def collect_fred_data():
 
 def collect_ecos_data():
     print("\n🇰🇷 한국 거시경제 지표 수집 중...")
-    if not ECOS_API_KEY: return print("  ⚠️ ECOS_API_KEY 누락됨") or {}
+    if not ECOS_API_KEY: return {}
     results = {}
     end_date, start_date = datetime.now().strftime("%Y%m"), (datetime.now() - timedelta(days=730)).strftime("%Y%m")
     for name, info in ECOS_SERIES.items():
@@ -126,38 +123,44 @@ def collect_news(max_per_feed=5):
             print(f"  ❌ [{feed_name}] 수집 실패: {e}")
     return all_news
 
+# [Robustness Fix] 정규식을 이용한 안전한 JSON 파싱
+def extract_valid_json(text):
+    match = re.search(r'\{.*\}', text, re.DOTALL)
+    if match:
+        try:
+            return json.loads(match.group(0))
+        except: pass
+    try:
+        return json.loads(text)
+    except:
+        return None
+
 def generate_ai_insight(market_data, fg_data, news, fred_data, ecos_data):
     print("\n🤖 프리미엄 AI 매크로 분석 중 (Groq)...")
-    if not GROQ_API_KEY: return print("  ⚠️ GROQ_API_KEY 누락됨") or {}
-    
+    if not GROQ_API_KEY:
+        return {"narrative": "시스템 알림: GROQ_API_KEY가 누락되어 분석이 생략되었습니다."}
+        
     market_text = "\n".join([f"{name}: {d['price']:,.2f} ({d['direction']}{abs(d['change_pct']):.2f}%)" for cat, items in market_data.items() for name, d in items.items()])
     news_text = "\n".join([f"- [{n['source']}] {n['title']}" for n in news])
 
-    prompt = f"""You are a Wall Street Macro Analyst writing a newsletter for investors.
+    prompt = f"""You are a Top-Tier Wall Street Macro Analyst. Output ONLY valid JSON.
 
-[CRITICAL RULES]
-1. NEVER output the instructions or prompt descriptions in your JSON values.
-2. Only output the final, polished analysis in Korean. 
-3. Tone: Professional, highly readable, objective.
-
-Output ONLY valid JSON matching this structure:
 {{
-  "narrative": "(Write 3 sentences analyzing today's market drivers, focusing on yields, FX, and equities.)",
+  "narrative": "오늘 글로벌 시장 핵심 동향 (금리, 환율, 증시 중심으로 3문장)",
   "so_what": {{
-    "미국_시장": "(1 sentence on US equities and sectors)",
-    "한국_시장": "(1 sentence on KR equities and sectors)",
-    "매크로_환경": "(1 sentence on yields and FX)"
+    "미국_시장": "미국 증시 1줄 평가",
+    "한국_시장": "한국 증시 1줄 평가",
+    "매크로_환경": "매크로 1줄 평가"
   }},
   "economic_calendar": {{
-    "US": [ {{"date": "(Day of week)", "event": "(Event name)"}} ],
-    "KR": [ {{"date": "(Day of week)", "event": "(Event name)"}} ]
+    "US": [{{"date": "월/일", "event": "일정"}}],
+    "KR": [{{"date": "월/일", "event": "일정"}}]
   }},
   "analyzed_news": [
-    {{"source": "(News source)", "title": "(Actual news title)", "impact": "(Objective market impact of this news)"}}
+    {{"source": "WSJ 등", "title": "핵심 뉴스", "impact": "시장 파급효과 1줄"}}
   ]
 }}
 
----
 [Data]
 {market_text}
 [News]
@@ -169,22 +172,22 @@ Output ONLY valid JSON matching this structure:
         response = client.chat.completions.create(
             model="llama-3.3-70b-versatile", 
             messages=[{"role": "user", "content": prompt}], 
-            temperature=0.1, 
-            response_format={"type": "json_object"}
+            temperature=0.1
         )
         
-        # [Robustness Fix] Markdown 백틱 강제 제거 로직 안전하게 변경
         raw_content = response.choices[0].message.content.strip()
-        raw_content = raw_content.replace("```json", "").replace("```", "").strip()
+        result = extract_valid_json(raw_content)
         
-        result = json.loads(raw_content)
-        print("  ✅ AI 프리미엄 분석 완료")
-        return result
+        if result:
+            print("  ✅ AI 분석 성공")
+            return result
+        else:
+            print(f"  ⚠️ LLM 원본 출력값 파싱 실패: {raw_content}")
+            return {"narrative": "시스템 알림: AI 모델이 올바른 형식을 반환하지 못했습니다."}
+            
     except Exception as e:
-        print(f"  ❌ AI 분석 실패 (JSON 파싱 에러): {e}")
-        if 'raw_content' in locals():
-            print(f"  ⚠️ LLM 원본 출력값: {raw_content}")
-        return {}
+        print(f"  ❌ AI API 호출 에러: {e}")
+        return {"narrative": f"시스템 알림: AI 통신 에러 발생 ({e})"}
 
 def main():
     today_str = datetime.now().strftime("%Y%m%d")
