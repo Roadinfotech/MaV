@@ -1,0 +1,240 @@
+{
+  "date": "2026년 03월 10일",
+  "weekday": "화",
+  "market_data": {
+    "indices": {
+      "S&P 500": {
+        "price": 6795.99,
+        "change": 55.97,
+        "change_pct": 0.83,
+        "direction": "▲"
+      },
+      "나스닥": {
+        "price": 22695.95,
+        "change": 308.27,
+        "change_pct": 1.38,
+        "direction": "▲"
+      },
+      "다우존스": {
+        "price": 47740.8,
+        "change": 239.25,
+        "change_pct": 0.5,
+        "direction": "▲"
+      },
+      "KOSPI": {
+        "price": 5539.47,
+        "change": 287.6,
+        "change_pct": 5.48,
+        "direction": "▲"
+      },
+      "KOSDAQ": {
+        "price": 1137.98,
+        "change": 35.7,
+        "change_pct": 3.24,
+        "direction": "▲"
+      },
+      "니케이225": {
+        "price": 54248.39,
+        "change": 1519.67,
+        "change_pct": 2.88,
+        "direction": "▲"
+      },
+      "상해종합": {
+        "price": 4117.32,
+        "change": 20.72,
+        "change_pct": 0.51,
+        "direction": "▲"
+      },
+      "VIX (공포지수)": {
+        "price": 25.5,
+        "change": -3.99,
+        "change_pct": -13.53,
+        "direction": "▼"
+      }
+    },
+    "currencies": {
+      "USD/KRW": {
+        "price": 1466.78,
+        "change": -17.11,
+        "change_pct": -1.15,
+        "direction": "▼"
+      },
+      "EUR/USD": {
+        "price": 1.16,
+        "change": 0.01,
+        "change_pct": 1.01,
+        "direction": "▲"
+      },
+      "USD/JPY": {
+        "price": 157.51,
+        "change": -0.92,
+        "change_pct": -0.58,
+        "direction": "▼"
+      },
+      "달러 인덱스": {
+        "price": 98.73,
+        "change": -0.45,
+        "change_pct": -0.46,
+        "direction": "▼"
+      }
+    },
+    "commodities": {
+      "WTI 원유": {
+        "price": 89.6,
+        "change": -1.3,
+        "change_pct": -1.43,
+        "direction": "▼"
+      },
+      "브렌트유": {
+        "price": 93.71,
+        "change": 1.02,
+        "change_pct": 1.1,
+        "direction": "▲"
+      },
+      "금": {
+        "price": 5185.4,
+        "change": 39.3,
+        "change_pct": 0.76,
+        "direction": "▲"
+      },
+      "은": {
+        "price": 89.09,
+        "change": 5.27,
+        "change_pct": 6.29,
+        "direction": "▲"
+      }
+    },
+    "bonds": {
+      "미국10년물금리": {
+        "price": 4.14,
+        "change": 0.0,
+        "change_pct": 0.07,
+        "direction": "▲"
+      }
+    },
+    "crypto": {
+      "비트코인": {
+        "price": 69990.07,
+        "change": 1587.69,
+        "change_pct": 2.32,
+        "direction": "▲"
+      },
+      "이더리움": {
+        "price": 2045.09,
+        "change": 52.15,
+        "change_pct": 2.62,
+        "direction": "▲"
+      }
+    }
+  },
+  "fear_and_greed": {
+    "value": 27.2533834586466,
+    "description": "fear"
+  },
+  "fred_data": {
+    "미국 기준금리": {
+      "value": 3.64,
+      "date": "2026-02-01"
+    },
+    "미국 CPI": {
+      "value": 326.59,
+      "date": "2026-01-01"
+    },
+    "미국 실업률(%)": {
+      "value": 4.4,
+      "date": "2026-02-01"
+    },
+    "미국 GDP성장률(%)": {
+      "value": 1.4,
+      "date": "2025-10-01"
+    },
+    "장단기금리차(10Y-2Y)": {
+      "value": 0.56,
+      "date": "2026-03-09"
+    }
+  },
+  "ecos_data": {
+    "한국 기준금리": {
+      "value": 3.0,
+      "period": "202412"
+    },
+    "한국 CPI(전년비%)": {
+      "value": 114.91,
+      "period": "202412"
+    }
+  },
+  "news": [
+    {
+      "source": "WSJ Markets",
+      "title": "Stocks Sink in Broad AI Rout Sparked by China's DeepSeek",
+      "link": "https://www.wsj.com/articles/nikkei-may-rise-as-weak-yen-raises-earnings-hopes-776a8056?mod=rss_markets_main"
+    },
+    {
+      "source": "WSJ Markets",
+      "title": "Comex Gold, Silver Settle Lower",
+      "link": "https://www.wsj.com/articles/gold-edges-lower-feds-rate-decision-in-focus-09dbfceb?mod=rss_markets_main"
+    },
+    {
+      "source": "WSJ Markets",
+      "title": "DeepSeek Won't Sink U.S. AI Titans",
+      "link": "https://www.wsj.com/articles/deepseek-us-ai-stocks-nvidia-broadcom-6cdfae81?mod=rss_markets_main"
+    },
+    {
+      "source": "WSJ Markets",
+      "title": "Financial Services Roundup: Market Talk",
+      "link": "https://www.wsj.com/articles/financial-services-roundup-market-talk-94f52cba?mod=rss_markets_main"
+    },
+    {
+      "source": "WSJ Markets",
+      "title": "Arabica Coffee Prices Hit Record on U.S., Colombia Tariff Spat",
+      "link": "https://www.wsj.com/articles/arabica-coffee-prices-hit-new-high-on-u-s-colombia-tariff-spat-582446fe?mod=rss_markets_main"
+    },
+    {
+      "source": "CNBC Top News",
+      "title": "Trump says Iran war will end 'very soon,' predicts lower oil prices",
+      "link": "https://www.cnbc.com/2026/03/09/trump-iran-war-end.html"
+    },
+    {
+      "source": "CNBC Top News",
+      "title": "Oil extends slide as investors assess Trump comments on Iran war, Strait of Hormuz",
+      "link": "https://www.cnbc.com/2026/03/10/crude-oil-prices-today-iran-war.html"
+    },
+    {
+      "source": "CNBC Top News",
+      "title": "South Korea opposed to U.S. moving air defense systems in the country to Middle East: President Lee",
+      "link": "https://www.cnbc.com/2026/03/10/south-korea-patriot-transfer-iran-war-air-defenses.html"
+    },
+    {
+      "source": "CNBC Top News",
+      "title": "Looming copper shortage as tariff fears and mine disruptions fuel tightness",
+      "link": "https://www.cnbc.com/2026/03/10/copper-shortage-tariff-fears-mine-disruptions-prices-tightness.html"
+    },
+    {
+      "source": "CNBC Top News",
+      "title": "European markets head for positive open as oil prices remain elevated",
+      "link": "https://www.cnbc.com/2026/03/10/european-markets-stoxx-600-ftse-dax-cac-iran-war-latest-news.html"
+    }
+  ],
+  "ai_insight": {
+    "narrative": "오늘의 시장은 중국의 DeepSeek 관련 뉴스가 주식 시장에 미친 영향과 함께 미국의 기준금리와 CPI 등 거시경제 지표의 발표로 인해 변동성이 큰 하루였습니다. 이러한 요인들이 결합하여 주식과 채권 시장에 다양한 압력을 가하고 있습니다.",
+    "so_what": {
+      "주식": "주식 시장은 중국의 DeepSeek 관련 뉴스와 미국의 기준금리 인상 가능성에 따라 변동성이 큰 모습을 보이고 있습니다.",
+      "채권": "채권 시장은 미국의 기준금리와 장단기금리차에 따라 영향을 받고 있으며, 이는 금리와 채권 가격의 상관관계를 강조합니다.",
+      "환율": "달러 인덱스의 하락과 함께 주요 통화들에 대한 압력이 가해지고 있으며, 이는 국제 무역과 투자에 영향을 미칠 수 있습니다."
+    },
+    "news_summary": [
+      "1. WSJ Markets - Stocks Sink in Broad AI Rout Sparked by China's DeepSeek: 중국의 DeepSeek 관련 뉴스가 주식 시장에 미친 영향",
+      "2. WSJ Markets - Comex Gold, Silver Settle Lower: 금과 은의 가격 하락",
+      "3. CNBC Top News - Trump says Iran war will end 'very soon,' predicts lower oil prices: 이란 전쟁 관련 뉴스와 원유 가격의 하락"
+    ],
+    "weekly_watchlist": "이번 주에는 미국의 GDP 성장률과 실업률 등 주요 거시경제 지표의 발표가 예정되어 있습니다.",
+    "risk_signal": "현재 데이터에서 감지되는 위험 신호는 주식 시장의 변동성과 채권 시장의 금리 상승 가능성입니다.",
+    "reels_script": {
+      "hook": "오늘 시장에서 가장 비정상적이거나 충격적인 데이터는 중국의 DeepSeek 관련 뉴스가 주식 시장에 미친 영향입니다.",
+      "data": "미국의 기준금리는 3.64%입니다.",
+      "context": "이러한 지표는 과거에 주식 시장과 채권 시장에 미친 영향이 크며, 특히 금리와 채권 가격의 상관관계를 강조합니다.",
+      "cta": "상세 데이터는 피드 본문을 확인하세요."
+    },
+    "ig_caption_insight": "오늘의 시장은 다양한 요인들이 결합하여 주식과 채권 시장에 영향을 미치고 있습니다. 주식 시장은 중국의 DeepSeek 관련 뉴스와 미국의 기준금리 인상 가능성에 따라 변동성이 큰 모습을 보이고 있으며, 채권 시장은 미국의 기준금리와 장단기금리차에 따라 영향을 받고 있습니다. 이러한 요인들이 미치는 압력과 상관관계를 이해하는 것이 중요합니다."
+  }
+}

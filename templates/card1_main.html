@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Space+Mono:wght@400;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1080px;
+    height: 1350px;
+    background: #0A0E17;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #E8ECF1;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* 배경 그라데이션 오버레이 */
+  body::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: 
+      radial-gradient(ellipse at 20% 0%, rgba(56, 114, 224, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 100%, rgba(139, 92, 246, 0.06) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    padding: 48px 52px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 헤더 */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 36px;
+  }
+
+  .brand {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .brand-name {
+    font-family: 'Space Mono', monospace;
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: #FFFFFF;
+    line-height: 1;
+  }
+
+  .brand-sub {
+    font-size: 14px;
+    color: #6B7280;
+    letter-spacing: 2px;
+    margin-top: 6px;
+    text-transform: uppercase;
+  }
+
+  .date-block {
+    text-align: right;
+  }
+
+  .date-main {
+    font-size: 22px;
+    font-weight: 700;
+    color: #FFFFFF;
+  }
+
+  .date-sub {
+    font-size: 14px;
+    color: #6B7280;
+    margin-top: 2px;
+  }
+
+  /* 구분선 */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, #3872E0, rgba(139, 92, 246, 0.5), transparent);
+    margin-bottom: 32px;
+  }
+
+  /* 한줄 해석 */
+  .insight-section {
+    background: linear-gradient(135deg, rgba(56, 114, 224, 0.12), rgba(139, 92, 246, 0.08));
+    border: 1px solid rgba(56, 114, 224, 0.25);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 32px;
+  }
+
+  .insight-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #3872E0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .insight-text {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 1.6;
+    color: #F1F5F9;
+  }
+
+  /* 히트맵 */
+  .heatmap-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #9CA3AF;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .heatmap-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .heatmap-cell {
+    border-radius: 12px;
+    padding: 20px 16px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .heatmap-cell::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.15);
+    pointer-events: none;
+  }
+
+  .cell-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.9);
+    position: relative;
+    z-index: 1;
+  }
+
+  .cell-change {
+    font-family: 'Space Mono', monospace;
+    font-size: 26px;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-top: 6px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* 환율 바 */
+  .exchange-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 18px 24px;
+    margin-bottom: 32px;
+  }
+
+  .exchange-label {
+    font-size: 15px;
+    color: #9CA3AF;
+  }
+
+  .exchange-value {
+    font-family: 'Space Mono', monospace;
+    font-size: 28px;
+    font-weight: 700;
+  }
+
+  .exchange-change {
+    font-family: 'Space Mono', monospace;
+    font-size: 16px;
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+
+  /* So What */
+  .sowhat-section {
+    background: rgba(255, 183, 77, 0.06);
+    border: 1px solid rgba(255, 183, 77, 0.2);
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin-bottom: 32px;
+    flex-grow: 1;
+  }
+
+  .sowhat-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: #FFB74D;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+
+  .sowhat-text {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #D1D5DB;
+  }
+
+  /* 푸터 */
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .footer-brand {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: #4B5563;
+    letter-spacing: 1px;
+  }
+
+  .footer-handle {
+    font-size: 13px;
+    color: #3872E0;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <!-- 헤더 -->
+    <div class="header">
+      <div class="brand">
+        <div class="brand-name">MaV</div>
+        <div class="brand-sub">Market At a View</div>
+      </div>
+      <div class="date-block">
+        <div class="date-main">{{ date }}</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 한줄 해석 -->
+    <div class="insight-section">
+      <div class="insight-label">💡 오늘의 시장 스토리</div>
+      <div class="insight-text">{{ main_insight }}</div>
+    </div>
+
+    <!-- 히트맵 -->
+    <div class="heatmap-label">📊 Market Heatmap</div>
+    <div class="heatmap-grid">
+      {% for item in heatmap_items %}
+      <div class="heatmap-cell" style="background-color: {{ item.color }};">
+        <div class="cell-name">{{ item.name }}</div>
+        <div class="cell-change">{{ item.direction }}{{ "%.2f"|format(item.change_pct|abs) }}%</div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- 환율 -->
+    <div class="exchange-bar">
+      <span class="exchange-label">💱 USD/KRW</span>
+      <span class="exchange-value" style="color: {{ exchange_color }};">{{ exchange_price }}</span>
+      <span class="exchange-change" style="background: {{ exchange_color }}20; color: {{ exchange_color }};">{{ exchange_direction }}{{ "%.2f"|format(exchange_change_pct|abs) }}%</span>
+    </div>
+
+    <!-- So What -->
+    <div class="sowhat-section">
+      <div class="sowhat-label">🤔 So What? — 내 투자에 미치는 영향</div>
+      <div class="sowhat-text">{{ so_what_text }}</div>
+    </div>
+
+    <!-- 푸터 -->
+    <div class="footer">
+      <span class="footer-brand">MaV — Market At a View</span>
+      <span class="footer-handle">@mav_daily</span>
+    </div>
+  </div>
+</body>
+</html>

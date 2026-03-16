@@ -1,0 +1,118 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <style>
+            @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+            body { margin: 0; width: 1080px; height: 1350px; font-family: 'Pretendard', sans-serif; background: #0f172a; color: white; display: flex; flex-direction: column; padding: 80px; box-sizing: border-box; }
+            .header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid #334155; padding-bottom: 20px; margin-bottom: 40px; }
+            .logo { font-size: 50px; font-weight: 900; letter-spacing: 2px; color: #fff; }
+            .logo span { color: #3b82f6; }
+            .date { font-size: 24px; color: #94a3b8; font-weight: 500; }
+            .section-title { font-size: 24px; font-weight: 700; color: #60a5fa; margin-bottom: 20px; letter-spacing: 1px; }
+            
+            .box { background: rgba(30, 41, 59, 0.7); border-radius: 20px; padding: 40px; margin-bottom: 30px; border: 1px solid #334155; }
+            .narrative { font-size: 32px; font-weight: 600; line-height: 1.6; color: #f8fafc; }
+            
+            .data-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px; }
+            .data-card { background: #1e293b; padding: 25px; border-radius: 16px; border-left: 6px solid #334155; display: flex; flex-direction: column; justify-content: space-between;}
+            .data-name { font-size: 20px; color: #cbd5e1; margin-bottom: 10px; }
+            .data-bottom { display: flex; justify-content: space-between; align-items: flex-end; }
+            .data-price { font-size: 34px; font-weight: 800; font-family: 'Courier New', monospace; }
+            .data-pct { font-size: 22px; font-weight: 700; padding: 4px 12px; border-radius: 8px; }
+            .sparkline { height: 40px; width: 120px; object-fit: contain; }
+            
+            .news-item { margin-bottom: 25px; padding-bottom: 25px; border-bottom: 1px solid #334155; }
+            .news-title { font-size: 26px; font-weight: 700; color: #e2e8f0; margin-bottom: 10px; line-height: 1.4; }
+            .news-insight { font-size: 20px; color: #94a3b8; line-height: 1.5; border-left: 3px solid #3b82f6; padding-left: 15px; }
+            
+            .footer { margin-top: auto; text-align: center; font-size: 20px; color: #64748b; font-weight: 500; }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <div class="logo">MaV<span>.</span></div>
+            <div class="date">2026년 03월 11일 (수)</div>
+        </div>
+        
+        <div class="section-title">MACRO SUMMARY</div>
+        <div class="box">
+            <div class="narrative">시황 종합 브리핑. 채권 금리, 환율, 주요 뉴스를 엮어 오늘 증시가 왜 이렇게 움직였는지 거시적 인과관계를 설명하는 날카로운 3문장. 미국의 10년물 금리와 달러 인덱스의 움직임이 주식 시장의 밸류에이션 압력에 영향을 미쳤으며, 이에 따라 기술 주가가 상승하였다. 또한, 중국의 DeepSeek 관련 뉴스가 시장에 미치는 영향과 원자재 가격의 하락이 투자자들의 심리에 영향을 미쳤다. 이러한 요인들이 복합적으로 작용하여 오늘의 시장 상황이 형성되었다.</div>
+        </div>
+
+        <div class="section-title">MARKET TRENDS (5-Day)</div>
+        <div class="data-grid">
+            
+            <div class="data-card" style="border-color: #EF5350;">
+                <div class="data-name">S&P 500</div>
+                <div class="data-bottom">
+                    <div>
+                        <div class="data-price">6,781.48</div>
+                        <div class="data-pct" style="color: #EF5350;">▼-0.21%</div>
+                    </div>
+                    
+                    <img class="sparkline" src="file:///C:/MaV/output/chart_idx_S&P_500.png">
+                    
+                </div>
+            </div>
+            
+            <div class="data-card" style="border-color: #66BB6A;">
+                <div class="data-name">나스닥</div>
+                <div class="data-bottom">
+                    <div>
+                        <div class="data-price">22,697.10</div>
+                        <div class="data-pct" style="color: #66BB6A;">▲0.01%</div>
+                    </div>
+                    
+                    <img class="sparkline" src="file:///C:/MaV/output/chart_idx_나스닥.png">
+                    
+                </div>
+            </div>
+            
+            <div class="data-card" style="border-color: #EF5350;">
+                <div class="data-name">다우존스</div>
+                <div class="data-bottom">
+                    <div>
+                        <div class="data-price">47,706.51</div>
+                        <div class="data-pct" style="color: #EF5350;">▼-0.07%</div>
+                    </div>
+                    
+                    <img class="sparkline" src="file:///C:/MaV/output/chart_idx_다우존스.png">
+                    
+                </div>
+            </div>
+            
+            <div class="data-card" style="border-color: #00C853;">
+                <div class="data-name">KOSPI</div>
+                <div class="data-bottom">
+                    <div>
+                        <div class="data-price">5,532.59</div>
+                        <div class="data-pct" style="color: #00C853;">▲5.35%</div>
+                    </div>
+                    
+                    <img class="sparkline" src="file:///C:/MaV/output/chart_idx_KOSPI.png">
+                    
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="section-title">DEEP DIVE NEWS</div>
+        <div class="box" style="padding: 30px 40px 10px 40px;">
+            
+            <div class="news-item">
+                <div class="news-title">WSJ Markets: Stocks Sink in Broad AI Rout Sparked by China's DeepSeek</div>
+                <div class="news-insight">이 뉴스는 중국의 DeepSeek 관련 뉴스가 시장에 미치는 영향과 기술 주가의 하락을 설명하며, 이는 투자자들의 심리와 시장의 불안정성에 영향을 미친다.</div>
+            </div>
+            
+            <div class="news-item">
+                <div class="news-title">CNBC Top News: Oil retreats even after Energy Secretary wrongly claims Navy escorted tanker through Strait of Hormuz</div>
+                <div class="news-insight">이 뉴스는 원유 가격의 하락과 에너지 시장이 시장에 미치는 영향에 대해 설명하며, 이는 투자자들의 자금 흐름과 시장의 안정성에 영향을 미친다.</div>
+            </div>
+            
+        </div>
+
+        <div class="footer">Market At a View | Premium Intelligence</div>
+    </body>
+    </html>
+    

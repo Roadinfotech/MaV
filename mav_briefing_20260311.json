@@ -1,0 +1,381 @@
+{
+  "date": "2026년 03월 11일",
+  "weekday": "수",
+  "market_data": {
+    "indices": {
+      "S&P 500": {
+        "price": 6781.48,
+        "change": -14.51,
+        "change_pct": -0.21,
+        "direction": "▼",
+        "history": [
+          6869.5,
+          6830.71,
+          6740.02,
+          6795.99,
+          6781.48
+        ]
+      },
+      "나스닥": {
+        "price": 22697.1,
+        "change": 1.15,
+        "change_pct": 0.01,
+        "direction": "▲",
+        "history": [
+          22807.48,
+          22748.99,
+          22387.68,
+          22695.95,
+          22697.1
+        ]
+      },
+      "다우존스": {
+        "price": 47706.51,
+        "change": -34.29,
+        "change_pct": -0.07,
+        "direction": "▼",
+        "history": [
+          48739.41,
+          47954.74,
+          47501.55,
+          47740.8,
+          47706.51
+        ]
+      },
+      "KOSPI": {
+        "price": 5694.28,
+        "change": 161.69,
+        "change_pct": 2.92,
+        "direction": "▲",
+        "history": [
+          5583.9,
+          5584.87,
+          5251.87,
+          5532.59,
+          5694.28
+        ]
+      },
+      "KOSDAQ": {
+        "price": 1161.2,
+        "change": 23.52,
+        "change_pct": 2.07,
+        "direction": "▲",
+        "history": [
+          1116.41,
+          1154.67,
+          1102.28,
+          1137.68,
+          1161.2
+        ]
+      },
+      "VIX (공포지수)": {
+        "price": 24.93,
+        "change": -0.57,
+        "change_pct": -2.24,
+        "direction": "▼",
+        "history": [
+          21.15,
+          23.75,
+          29.49,
+          25.5,
+          24.93
+        ]
+      }
+    },
+    "us_sectors": {
+      "미국 기술주(XLK)": {
+        "price": 139.76,
+        "change": 0.0,
+        "change_pct": 0.0,
+        "direction": "▲",
+        "history": [
+          139.84,
+          140.18,
+          137.29,
+          139.76,
+          139.76
+        ]
+      },
+      "미국 금융주(XLF)": {
+        "price": 50.06,
+        "change": -0.27,
+        "change_pct": -0.54,
+        "direction": "▼",
+        "history": [
+          51.5,
+          51.23,
+          50.57,
+          50.33,
+          50.06
+        ]
+      },
+      "미국 에너지(XLE)": {
+        "price": 55.6,
+        "change": -0.72,
+        "change_pct": -1.28,
+        "direction": "▼",
+        "history": [
+          56.19,
+          56.48,
+          56.57,
+          56.32,
+          55.6
+        ]
+      }
+    },
+    "kr_sectors": {
+      "KODEX 200": {
+        "price": 85250.0,
+        "change": 2350.0,
+        "change_pct": 2.83,
+        "direction": "▲",
+        "history": [
+          83570.0,
+          83560.0,
+          78230.0,
+          82900.0,
+          85250.0
+        ]
+      },
+      "KODEX 반도체": {
+        "price": 100515.0,
+        "change": 1295.0,
+        "change_pct": 1.31,
+        "direction": "▲",
+        "history": [
+          100585.0,
+          102335.0,
+          93250.0,
+          99220.0,
+          100515.0
+        ]
+      }
+    },
+    "currencies": {
+      "USD/KRW": {
+        "price": 1467.89,
+        "change": 3.42,
+        "change_pct": 0.23,
+        "direction": "▲",
+        "history": [
+          1460.75,
+          1479.51,
+          1483.89,
+          1464.47,
+          1467.89
+        ]
+      },
+      "달러 인덱스": {
+        "price": 98.85,
+        "change": -0.33,
+        "change_pct": -0.33,
+        "direction": "▼",
+        "history": [
+          98.77,
+          99.32,
+          98.99,
+          99.18,
+          98.85
+        ]
+      }
+    },
+    "commodities": {
+      "WTI 원유": {
+        "price": 83.45,
+        "change": -11.32,
+        "change_pct": -11.94,
+        "direction": "▼",
+        "history": [
+          74.66,
+          81.01,
+          90.9,
+          94.77,
+          83.45
+        ]
+      },
+      "금": {
+        "price": 5227.3,
+        "change": 135.8,
+        "change_pct": 2.67,
+        "direction": "▲",
+        "history": [
+          5120.2,
+          5065.3,
+          5146.1,
+          5091.5,
+          5227.3
+        ]
+      }
+    },
+    "bonds": {
+      "미국10년물금리": {
+        "price": 4.14,
+        "change": 0.0,
+        "change_pct": 0.0,
+        "direction": "▲",
+        "history": [
+          4.08,
+          4.15,
+          4.13,
+          4.14,
+          4.14
+        ]
+      }
+    },
+    "crypto": {
+      "비트코인": {
+        "price": 70040.68,
+        "change": 1638.3,
+        "change_pct": 2.4,
+        "direction": "▲",
+        "history": [
+          68136.49,
+          67272.59,
+          65969.78,
+          68402.38,
+          70040.68
+        ]
+      }
+    }
+  },
+  "fear_and_greed": {
+    "value": 27.8805194805195,
+    "description": "fear"
+  },
+  "fred_data": {
+    "미국 기준금리": {
+      "value": 3.64,
+      "date": "2026-02-01"
+    },
+    "미국 CPI": {
+      "value": 326.59,
+      "date": "2026-01-01"
+    },
+    "미국 실업률(%)": {
+      "value": 4.4,
+      "date": "2026-02-01"
+    }
+  },
+  "ecos_data": {
+    "한국 기준금리": {
+      "value": 3.0,
+      "period": "202412"
+    }
+  },
+  "news": [
+    {
+      "source": "WSJ Markets",
+      "title": "Stocks Sink in Broad AI Rout Sparked by China's DeepSeek",
+      "link": "https://www.wsj.com/articles/nikkei-may-rise-as-weak-yen-raises-earnings-hopes-776a8056?mod=rss_markets_main"
+    },
+    {
+      "source": "WSJ Markets",
+      "title": "Comex Gold, Silver Settle Lower",
+      "link": "https://www.wsj.com/articles/gold-edges-lower-feds-rate-decision-in-focus-09dbfceb?mod=rss_markets_main"
+    },
+    {
+      "source": "WSJ Markets",
+      "title": "DeepSeek Won't Sink U.S. AI Titans",
+      "link": "https://www.wsj.com/articles/deepseek-us-ai-stocks-nvidia-broadcom-6cdfae81?mod=rss_markets_main"
+    },
+    {
+      "source": "WSJ Markets",
+      "title": "Financial Services Roundup: Market Talk",
+      "link": "https://www.wsj.com/articles/financial-services-roundup-market-talk-94f52cba?mod=rss_markets_main"
+    },
+    {
+      "source": "WSJ Markets",
+      "title": "Arabica Coffee Prices Hit Record on U.S., Colombia Tariff Spat",
+      "link": "https://www.wsj.com/articles/arabica-coffee-prices-hit-new-high-on-u-s-colombia-tariff-spat-582446fe?mod=rss_markets_main"
+    },
+    {
+      "source": "CNBC Top News",
+      "title": "Oil retreats even after Energy Secretary wrongly claims Navy escorted tanker through Strait of Hormuz",
+      "link": "https://www.cnbc.com/2026/03/10/crude-oil-prices-today-iran-war.html"
+    },
+    {
+      "source": "CNBC Top News",
+      "title": "Tillis maintains blockade on Fed pick Kevin Warsh over Powell probe",
+      "link": "https://www.cnbc.com/2026/03/10/fed-kevin-warsh-thom-tillis-trump.html"
+    },
+    {
+      "source": "CNBC Top News",
+      "title": "Oracle stock jumps 9% on earnings beat and increased guidance as cloud revenue climbs 44%",
+      "link": "https://www.cnbc.com/2026/03/10/oracle-orcl-q3-earnings-report-2026.html"
+    },
+    {
+      "source": "CNBC Top News",
+      "title": "Stock futures are little changed ahead of consumer inflation report: Live updates",
+      "link": "https://www.cnbc.com/2026/03/10/stock-market-today-live-updates.html"
+    },
+    {
+      "source": "CNBC Top News",
+      "title": "AI chipmaker Cerebras namedropped by Oracle, alongside Nvidia and AMD",
+      "link": "https://www.cnbc.com/2026/03/10/ai-chipmaker-cerebras-namedropped-by-oracle-alongside-nvidia-and-amd-.html"
+    },
+    {
+      "source": "한국경제",
+      "title": "SK케미칼, 하루 두번 먹는 고용량 조인스 출시",
+      "link": "https://www.hankyung.com/article/202603113258i"
+    },
+    {
+      "source": "한국경제",
+      "title": "\"클래식 가치·장인 정신 통했다\"……마에스트로 레더 아우터 인기",
+      "link": "https://www.hankyung.com/article/202603113263g"
+    },
+    {
+      "source": "한국경제",
+      "title": "챗GPT 어머니, 구글 AI 수장도 온다…'엔비디아 그린'으로 뒤덮인 세너제이[김인엽의 퓨처 디스패치]",
+      "link": "https://www.hankyung.com/article/202603112871i"
+    },
+    {
+      "source": "한국경제",
+      "title": "사탕보다 달달하게…화이트데이 사랑을 선물하는 법 [민은미의 파인주얼리]",
+      "link": "https://www.hankyung.com/article/202603113031i"
+    },
+    {
+      "source": "한국경제",
+      "title": "이소라, 여덟 번째 봄 콘서트 '봄의 미로' 5월 개최",
+      "link": "https://www.hankyung.com/article/202603113237H"
+    }
+  ],
+  "ai_insight": {
+    "narrative": "오늘의 시장은 미국 기술주와 에너지 섹터의 하락으로 인해 다소 부진한 모습을 보였습니다. 하지만 한국 시장은 KOSPI와 KOSDAQ의 상승으로 긍정적인 흐름을 유지했습니다. 이러한 시장의 흐름은 최근의 매크로 경제 지표와 뉴스에 의해 영향을 받은 것으로 보입니다.",
+    "so_what": {
+      "미국_시장": "미국 증시는 기술주와 에너지 섹터의 하락으로 인해 소폭 하락했습니다.",
+      "한국_시장": "한국 증시는 KOSPI와 KOSDAQ의 상승으로 인해 상승했습니다.",
+      "매크로_환경": "금리와 환율의 움직임은 거시적 환경에 긍정적인 영향을 미치고 있습니다."
+    },
+    "economic_calendar": {
+      "US": [
+        {
+          "date": "이번 주 수요일",
+          "event": "미국의 소비자 물가 지수 발표"
+        }
+      ],
+      "KR": [
+        {
+          "date": "",
+          "event": ""
+        }
+      ]
+    },
+    "analyzed_news": [
+      {
+        "source": "WSJ Markets",
+        "title": "Stocks Sink in Broad AI Rout Sparked by China's DeepSeek",
+        "impact": "이 뉴스는 미국 기술주에 부정적인 영향을 미쳤습니다."
+      },
+      {
+        "source": "CNBC Top News",
+        "title": "Oil retreats even after Energy Secretary wrongly claims Navy escorted tanker through Strait of Hormuz",
+        "impact": "이 뉴스는 에너지 섹터에 부정적인 영향을 미쳤습니다."
+      },
+      {
+        "source": "CNBC Top News",
+        "title": "Oracle stock jumps 9% on earnings beat and increased guidance as cloud revenue climbs 44%",
+        "impact": "이 뉴스는 클라우드 섹터에 긍정적인 영향을 미쳤습니다."
+      }
+    ]
+  }
+}

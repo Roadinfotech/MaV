@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Space+Mono:wght@400;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1080px;
+    height: 1350px;
+    background: #0A0E17;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #E8ECF1;
+    overflow: hidden;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: 
+      radial-gradient(ellipse at 50% 0%, rgba(56, 114, 224, 0.06) 0%, transparent 40%),
+      radial-gradient(ellipse at 50% 100%, rgba(139, 92, 246, 0.04) 0%, transparent 40%);
+    pointer-events: none;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    padding: 48px 52px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+  }
+
+  .page-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #FFFFFF;
+  }
+
+  .page-badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: #3872E0;
+    background: rgba(56, 114, 224, 0.12);
+    border: 1px solid rgba(56, 114, 224, 0.3);
+    padding: 6px 14px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, #3872E0, rgba(139, 92, 246, 0.5), transparent);
+    margin-bottom: 36px;
+  }
+
+  /* 뉴스 카드 */
+  .news-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 32px 36px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .news-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: #3872E0;
+    border-radius: 0 2px 2px 0;
+  }
+
+  .news-number {
+    font-family: 'Space Mono', monospace;
+    font-size: 42px;
+    font-weight: 700;
+    color: rgba(56, 114, 224, 0.2);
+    position: absolute;
+    right: 28px;
+    top: 16px;
+    line-height: 1;
+  }
+
+  .news-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 14px;
+    line-height: 1.4;
+    padding-right: 60px;
+  }
+
+  .news-insight {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .news-arrow {
+    font-size: 16px;
+    color: #FFB74D;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .news-insight-text {
+    font-size: 17px;
+    line-height: 1.6;
+    color: #9CA3AF;
+  }
+
+  /* 체크포인트 */
+  .checkpoint-section {
+    background: linear-gradient(135deg, rgba(255, 183, 77, 0.08), rgba(255, 152, 0, 0.04));
+    border: 1px solid rgba(255, 183, 77, 0.2);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 28px;
+  }
+
+  .checkpoint-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: #FFB74D;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+  }
+
+  .checkpoint-text {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #D1D5DB;
+  }
+
+  /* 위험 신호 */
+  .risk-section {
+    background: rgba(239, 83, 80, 0.06);
+    border: 1px solid rgba(239, 83, 80, 0.15);
+    border-radius: 16px;
+    padding: 24px 28px;
+    margin-bottom: 28px;
+  }
+
+  .risk-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: #EF5350;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+
+  .risk-text {
+    font-size: 17px;
+    line-height: 1.6;
+    color: #D1D5DB;
+  }
+
+  /* CTA */
+  .cta-section {
+    background: linear-gradient(135deg, rgba(56, 114, 224, 0.1), rgba(139, 92, 246, 0.08));
+    border: 1px solid rgba(56, 114, 224, 0.2);
+    border-radius: 16px;
+    padding: 32px 36px;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: 24px;
+  }
+
+  .cta-brand {
+    font-family: 'Space Mono', monospace;
+    font-size: 32px;
+    font-weight: 700;
+    color: #FFFFFF;
+    letter-spacing: 3px;
+    margin-bottom: 6px;
+  }
+
+  .cta-tagline {
+    font-size: 16px;
+    color: #9CA3AF;
+    margin-bottom: 18px;
+  }
+
+  .cta-subscribe {
+    font-size: 14px;
+    color: #6B7280;
+  }
+
+  .cta-email {
+    color: #3872E0;
+    font-weight: 500;
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .footer-brand {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: #4B5563;
+  }
+
+  .footer-page {
+    font-size: 13px;
+    color: #6B7280;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="page-title">📰 오늘의 핵심 뉴스</div>
+      <div class="page-badge">MaV {{ date }}</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- 뉴스 카드 -->
+    {% for news in news_list %}
+    <div class="news-card">
+      <div class="news-number">0{{ loop.index }}</div>
+      <div class="news-title">{{ news.title }}</div>
+      <div class="news-insight">
+        <span class="news-arrow">→</span>
+        <span class="news-insight-text">{{ news.insight }}</span>
+      </div>
+    </div>
+    {% endfor %}
+
+    <!-- 투자자 체크포인트 -->
+    <div class="checkpoint-section">
+      <div class="checkpoint-label">📅 투자자 체크포인트</div>
+      <div class="checkpoint-text">{{ checkpoint_text }}</div>
+    </div>
+
+    <!-- 위험 신호 -->
+    <div class="risk-section">
+      <div class="risk-label">⚠️ 위험 신호</div>
+      <div class="risk-text">{{ risk_signal }}</div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <div class="cta-brand">MaV</div>
+      <div class="cta-tagline">매일 오전 8시, 당신의 경제 브리핑</div>
+      <div class="cta-subscribe">구독 문의: <span class="cta-email">mav.daily@gmail.com</span></div>
+    </div>
+
+    <div class="footer">
+      <span class="footer-brand">MaV — Market At a View</span>
+      <span class="footer-page">3 / 3</span>
+    </div>
+  </div>
+</body>
+</html>

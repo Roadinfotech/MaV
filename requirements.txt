@@ -1,0 +1,7 @@
+yfinance
+feedparser
+requests
+fredapi
+fear-and-greed
+groq
+resend
